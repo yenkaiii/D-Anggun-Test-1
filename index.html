@@ -3,16 +3,17 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>D'Anggun Chalet — Hybrid with WhatsApp + Call</title>
-  <meta name="description" content="Hybrid minimalist website for D'Anggun Chalet with booking calendar, WhatsApp integration, and call option." />
+  <title>D'Anggun Chalet — Hybrid Homepage Edition</title>
+  <meta name="description" content="D'Anggun Chalet — premium minimalist with booking calendar." />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg:#f5eee6;
+      --bg:#f5efe6; /* beige */
       --text:#1a1a1a;
       --muted:#666;
       --accent:#bfa76f;
       --maxw:1100px;
+      --border:#e0d6c8;
     }
     *{box-sizing:border-box;margin:0;padding:0}
     body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
@@ -22,83 +23,51 @@
     .section{padding:80px 28px}
 
     /* Header */
-    header{display:flex;justify-content:space-between;align-items:center;padding:28px 0;border-bottom:1px solid #e6ddd2}
+    header{display:flex;justify-content:space-between;align-items:center;padding:28px 0;border-bottom:1px solid #ddd}
     .logo{font-family:Playfair Display,serif;font-size:1.5rem;font-weight:700;color:var(--text)}
     nav{display:flex;gap:24px;font-size:0.95rem;font-weight:500;color:var(--muted)}
     nav a:hover{color:var(--accent)}
 
     /* Hero */
-    .hero{position:relative;height:62vh;min-height:420px;display:flex;align-items:center;justify-content:center;text-align:center;color:white}
-    .hero::before{
-      content:"";
-      position:absolute;inset:0;
-      background:url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
-      z-index:-2;
-    }
-    .hero::after{
-      content:"";
-      position:absolute;inset:0;
-      background:rgba(0,0,0,0.45);
-      z-index:-1;
-    }
-    .hero h1{font-family:Playfair Display,serif;font-size:3rem;margin-bottom:20px}
-    .hero p{max-width:600px;margin:0 auto 30px}
+    .hero{position:relative;height:55vh;min-height:380px;display:flex;align-items:center;justify-content:center;text-align:center;color:white;border-radius:12px;overflow:hidden;margin-top:20px}
+    .hero::before{content:"";position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;z-index:0}
+    .hero::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,0.45);z-index:1}
+    .hero-inner{position:relative;z-index:2;padding:20px}
+    .hero h1{font-family:Playfair Display,serif;font-size:3rem;font-weight:700;margin-bottom:16px}
+    .hero p{color:#f2f2f2;max-width:600px;margin:0 auto 22px}
     .hero .cta{display:inline-block;padding:14px 28px;background:var(--accent);color:white;border-radius:30px;font-weight:600;transition:0.2s}
     .hero .cta:hover{opacity:0.85}
 
-    /* About */
-    .about{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
-    .about img{width:100%;border-radius:12px;object-fit:cover}
-    .about h2{font-family:Playfair Display,serif;font-size:2rem;margin-bottom:18px}
-    .about p{color:var(--muted)}
+    /* Booking Grid */
+    .booking-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;margin-top:20px}
+    .card{background:#fff;padding:24px;border-radius:12px;border:1px solid var(--border);box-shadow:0 4px 10px rgba(0,0,0,0.05)}
+    .card h2{font-family:Playfair Display,serif;font-size:1.6rem;margin-bottom:16px;color:var(--text)}
 
-    /* Gallery */
-    .gallery h2{font-family:Playfair Display,serif;font-size:2rem;margin-bottom:28px;text-align:center}
-    .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-    .gallery-grid img{width:100%;height:280px;object-fit:cover;border-radius:10px;transition:0.3s;cursor:pointer}
-    .gallery-grid img:hover{transform:scale(1.03)}
+    /* Calendar */
+    .calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;font-size:0.9rem;text-align:center}
+    .calendar div{padding:10px;border-radius:6px}
+    .day-name{font-weight:600;background:#faf7f2}
+    .available{background:#e9f7ef;color:#2e7d32}
+    .booked{background:#fdecea;color:#c62828}
+    .empty{background:transparent}
 
-    /* Contact + Calendar */
-    .contact-calendar{display:grid;grid-template-columns:1fr 1fr;gap:40px}
-    .contact, .calendar{
-      background:#fff;
-      border:1px solid #e6ddd2;
-      border-radius:12px;
-      padding:24px;
-      box-shadow:0 4px 12px rgba(0,0,0,0.04);
-    }
-    .contact h2,.calendar h2{
-      font-family:Playfair Display,serif;
-      font-size:1.6rem;
-      margin-bottom:20px;
-      text-align:center;
-    }
-    form{display:flex;flex-direction:column;gap:16px}
-    input,textarea{padding:14px;border:1px solid #ddd;border-radius:6px;font-family:inherit}
+    /* Contact */
+    form{display:flex;flex-direction:column;gap:14px}
+    input,textarea{padding:12px;border:1px solid #ddd;border-radius:6px;font-family:inherit}
     button{padding:14px;border:0;border-radius:30px;background:var(--accent);color:white;font-weight:600;cursor:pointer}
     button:hover{opacity:0.85}
-
-    /* Calendar Grid */
-    .calendar-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
-    .calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;font-size:0.85rem}
-    .calendar-grid div{padding:8px;text-align:center;border-radius:6px}
-    .day-name{font-weight:600;color:var(--muted)}
-    .available{background:#e3f6e3}
-    .booked{background:#f8d6d6}
-    .inactive{color:#bbb}
+    .or{text-align:center;margin:12px 0;font-size:0.9rem;color:var(--muted)}
+    .call{text-align:center;font-size:0.95rem;color:var(--text)}
 
     /* Footer */
-    footer{text-align:center;padding:40px 28px;border-top:1px solid #e6ddd2;color:var(--muted);font-size:0.9rem;margin-top:40px}
+    footer{text-align:center;padding:40px 28px;border-top:1px solid #ddd;color:var(--muted);font-size:0.9rem;margin-top:40px}
 
     /* Responsive */
     @media(max-width:900px){
-      .about{grid-template-columns:1fr}
-      .gallery-grid{grid-template-columns:repeat(2,1fr)}
-      .contact-calendar{grid-template-columns:1fr}
+      .booking-grid{grid-template-columns:1fr}
     }
     @media(max-width:600px){
       .hero h1{font-size:2.2rem}
-      .gallery-grid{grid-template-columns:1fr}
     }
   </style>
 </head>
@@ -109,68 +78,44 @@
       <div class="logo">D'Anggun</div>
       <nav>
         <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#gallery">Gallery</a>
+        <a href="#calendar">Calendar</a>
         <a href="#contact">Contact</a>
       </nav>
     </header>
 
     <!-- HERO -->
     <section class="hero" id="home">
-      <div>
+      <div class="hero-inner">
         <h1>Escape to Calm at D'Anggun</h1>
         <p>Premium wooden chalet surrounded by nature. Crafted for those who value calm, design, and meaningful rest.</p>
         <a class="cta" href="#contact">Book Now</a>
       </div>
     </section>
 
-    <!-- ABOUT -->
-    <section class="section about" id="about">
-      <div>
-        <h2>About D'Anggun Chalet</h2>
-        <p>D'Anggun Chalet offers a boutique stay blending minimal design with cozy warmth. Neutral tones, natural wood, and sunlight through wide windows set the mood for your retreat. A premium experience with the simplicity of nature.</p>
+    <!-- BOOKING GRID -->
+    <section class="section booking-grid">
+      <!-- CALENDAR -->
+      <div class="card" id="calendar">
+        <h2>Availability Calendar</h2>
+        <div class="calendar">
+          <div class="day-name">Sun</div><div class="day-name">Mon</div><div class="day-name">Tue</div><div class="day-name">Wed</div><div class="day-name">Thu</div><div class="day-name">Fri</div><div class="day-name">Sat</div>
+          <div class="empty"></div><div class="available">1</div><div class="available">2</div><div class="booked">3</div><div class="available">4</div><div class="available">5</div><div class="booked">6</div>
+          <div class="available">7</div><div class="available">8</div><div class="booked">9</div><div class="available">10</div><div class="available">11</div><div class="booked">12</div><div class="available">13</div>
+          <!-- Add more days as needed -->
+        </div>
       </div>
-      <div>
-        <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?q=80&w=1200&auto=format&fit=crop" alt="chalet interior">
-      </div>
-    </section>
 
-    <!-- GALLERY -->
-    <section class="section gallery" id="gallery">
-      <h2>Gallery</h2>
-      <div class="gallery-grid">
-        <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?q=80&w=1200&auto=format&fit=crop" alt="1">
-        <img src="https://images.unsplash.com/photo-1496412705862-e0088f16f791?q=80&w=1200&auto=format&fit=crop" alt="2">
-        <img src="https://images.unsplash.com/photo-1501183638710-841dd1904471?q=80&w=1200&auto=format&fit=crop" alt="3">
-        <img src="https://images.unsplash.com/photo-1445019980597-93fa8acb246c?q=80&w=1200&auto=format&fit=crop" alt="4">
-        <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1200&auto=format&fit=crop" alt="5">
-        <img src="https://images.unsplash.com/photo-1505765059890-7b9d2c6f0d3a?q=80&w=1200&auto=format&fit=crop" alt="6">
-      </div>
-    </section>
-
-    <!-- CONTACT + CALENDAR -->
-    <section class="section contact-calendar" id="contact">
-      <div class="contact">
+      <!-- CONTACT -->
+      <div class="card" id="contact">
         <h2>Contact & Booking</h2>
         <form onsubmit="sendWhatsApp(event)">
           <input type="text" id="name" placeholder="Your Name" required>
           <input type="email" id="email" placeholder="Your Email" required>
           <textarea id="message" rows="5" placeholder="Your message (dates, number of guests...)" required></textarea>
           <button type="submit">Send via WhatsApp</button>
-          <div style="text-align:center;margin:14px 0;color:#999;">or</div>
-          <div style="text-align:center;font-size:0.95rem;color:#666;">
-            Call us at <a href="tel:01901801893" style="color:var(--accent);font-weight:600;">019-01801893</a>
-          </div>
         </form>
-      </div>
-      <div class="calendar">
-        <h2>Availability Calendar</h2>
-        <div class="calendar-header">
-          <button onclick="prevMonth()">◀</button>
-          <span id="calendar-month"></span>
-          <button onclick="nextMonth()">▶</button>
-        </div>
-        <div class="calendar-grid" id="calendar"></div>
+        <div class="or">— or —</div>
+        <div class="call">Call this number: <strong>01901801893</strong></div>
       </div>
     </section>
 
@@ -181,76 +126,14 @@
   </div>
 
   <script>
-    // Manual booked dates
-    const bookedDates = ["2025-09-20","2025-09-25","2025-10-05"];
-
-    let currentDate = new Date();
-    let minDate = new Date();
-    let maxDate = new Date(minDate.getFullYear(), minDate.getMonth()+3, 1);
-
-    function renderCalendar(){
-      const year = currentDate.getFullYear();
-      const month = currentDate.getMonth();
-      const monthStart = new Date(year,month,1);
-      const monthEnd = new Date(year,month+1,0);
-      const calendar = document.getElementById("calendar");
-      const header = document.getElementById("calendar-month");
-      const dayNames = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
-
-      header.textContent = monthStart.toLocaleString('default',{month:'long'})+" "+year;
-      calendar.innerHTML="";
-
-      dayNames.forEach(d=>{
-        const el=document.createElement("div");
-        el.textContent=d;
-        el.className="day-name";
-        calendar.appendChild(el);
-      });
-
-      for(let i=0;i<monthStart.getDay();i++){
-        const el=document.createElement("div");
-        el.className="inactive";
-        calendar.appendChild(el);
-      }
-
-      for(let d=1;d<=monthEnd.getDate();d++){
-        const dateStr = year+"-"+String(month+1).padStart(2,"0")+"-"+String(d).padStart(2,"0");
-        const el=document.createElement("div");
-        el.textContent=d;
-
-        if(bookedDates.includes(dateStr)){
-          el.className="booked";
-        } else {
-          el.className="available";
-        }
-        calendar.appendChild(el);
-      }
-    }
-
-    function prevMonth(){
-      const newDate = new Date(currentDate.getFullYear(), currentDate.getMonth()-1,1);
-      if(newDate<minDate) return;
-      currentDate=newDate; renderCalendar();
-    }
-    function nextMonth(){
-      const newDate = new Date(currentDate.getFullYear(), currentDate.getMonth()+1,1);
-      if(newDate>maxDate) return;
-      currentDate=newDate; renderCalendar();
-    }
-
-    renderCalendar();
-
-    // WhatsApp booking
     function sendWhatsApp(e){
       e.preventDefault();
       var name=document.getElementById('name').value;
       var email=document.getElementById('email').value;
       var msg=document.getElementById('message').value;
-
-      var phone="60123456789"; // <-- Tukar ke nombor WhatsApp kau
-      var text="Booking request:%0AName: "+name+"%0AEmail: "+email+"%0AMessage: "+msg;
-
-      window.open("https://wa.me/"+phone+"?text="+text,"_blank");
+      var text=`Booking Request%0AName: ${name}%0AEmail: ${email}%0AMessage: ${msg}`;
+      var phone="601901801893"; // Malaysia format
+      window.open(`https://wa.me/${phone}?text=${text}`,'_blank');
     }
   </script>
 </body>
