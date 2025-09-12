@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>D'Anggun Chalet — Hybrid Homepage</title>
-  <meta name="description" content="Hybrid version: minimalist premium layout with background hero image and availability calendar." />
+  <title>D'Anggun Chalet — Hybrid Branch with Calendar</title>
+  <meta name="description" content="Hybrid minimalist website for D'Anggun Chalet with booking calendar." />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg:#f2e9df; /* pekat beige */
+      --bg:#f5eee6; /* beige pekat */
       --text:#1a1a1a;
       --muted:#666;
       --accent:#bfa76f;
@@ -17,21 +17,32 @@
     *{box-sizing:border-box;margin:0;padding:0}
     body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
     a{text-decoration:none;color:inherit}
+
     .wrap{max-width:var(--maxw);margin:0 auto;padding:28px}
     .section{padding:80px 28px}
 
     /* Header */
-    header{display:flex;justify-content:space-between;align-items:center;padding:28px 0;border-bottom:1px solid #eee}
+    header{display:flex;justify-content:space-between;align-items:center;padding:28px 0;border-bottom:1px solid #e6ddd2}
     .logo{font-family:Playfair Display,serif;font-size:1.5rem;font-weight:700;color:var(--text)}
     nav{display:flex;gap:24px;font-size:0.95rem;font-weight:500;color:var(--muted)}
     nav a:hover{color:var(--accent)}
 
     /* Hero */
-    .hero{position:relative;height:62vh;min-height:420px;display:flex;align-items:center;justify-content:center;text-align:center;color:white;border-radius:12px;overflow:hidden;margin-top:20px}
-    .hero::before{content:"";position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;z-index:-2}
-    .hero::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,0.45);z-index:-1}
-    .hero h1{font-family:Playfair Display,serif;font-size:3rem;font-weight:700;margin-bottom:20px}
-    .hero p{max-width:600px;margin:0 auto 30px;color:#f0f0f0}
+    .hero{position:relative;height:62vh;min-height:420px;display:flex;align-items:center;justify-content:center;text-align:center;color:white}
+    .hero::before{
+      content:"";
+      position:absolute;inset:0;
+      background:url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
+      z-index:-2;
+    }
+    .hero::after{
+      content:"";
+      position:absolute;inset:0;
+      background:rgba(0,0,0,0.45);
+      z-index:-1;
+    }
+    .hero h1{font-family:Playfair Display,serif;font-size:3rem;margin-bottom:20px}
+    .hero p{max-width:600px;margin:0 auto 30px}
     .hero .cta{display:inline-block;padding:14px 28px;background:var(--accent);color:white;border-radius:30px;font-weight:600;transition:0.2s}
     .hero .cta:hover{opacity:0.85}
 
@@ -47,32 +58,41 @@
     .gallery-grid img{width:100%;height:280px;object-fit:cover;border-radius:10px;transition:0.3s;cursor:pointer}
     .gallery-grid img:hover{transform:scale(1.03)}
 
-    /* Contact + Calendar side by side */
-    .contact-calendar{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
-    .contact h2,.calendar h2{font-family:Playfair Display,serif;font-size:2rem;margin-bottom:20px;text-align:center}
+    /* Contact + Calendar */
+    .contact-calendar{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+    .contact, .calendar{
+      background:#fff;
+      border:1px solid #e6ddd2;
+      border-radius:12px;
+      padding:24px;
+      box-shadow:0 4px 12px rgba(0,0,0,0.04);
+    }
+    .contact h2,.calendar h2{
+      font-family:Playfair Display,serif;
+      font-size:1.6rem;
+      margin-bottom:20px;
+      text-align:center;
+    }
     form{display:flex;flex-direction:column;gap:16px}
     input,textarea{padding:14px;border:1px solid #ddd;border-radius:6px;font-family:inherit}
     button{padding:14px;border:0;border-radius:30px;background:var(--accent);color:white;font-weight:600;cursor:pointer}
     button:hover{opacity:0.85}
 
-    /* Calendar */
-    .calendar-nav{display:flex;justify-content:center;gap:20px;margin-bottom:20px;align-items:center}
-    .calendar-nav button{padding:8px 16px;border:0;border-radius:6px;background:var(--accent);color:white;font-weight:600;cursor:pointer}
-    .calendar-nav button:disabled{opacity:0.4;cursor:not-allowed}
-    .calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;max-width:600px;margin:0 auto}
-    .calendar-grid div{padding:12px;text-align:center;border-radius:6px;font-size:0.9rem}
-    .calendar-grid .header{font-weight:600;color:var(--muted)}
-    .calendar-grid .day{background:#fff;border:1px solid #ddd}
-    .calendar-grid .booked{background:#e57373;color:white}
-    .calendar-grid .available{background:#81c784;color:white}
-    .calendar-grid .empty{background:transparent;border:0}
+    /* Calendar Grid */
+    .calendar-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+    .calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;font-size:0.85rem}
+    .calendar-grid div{padding:8px;text-align:center;border-radius:6px}
+    .day-name{font-weight:600;color:var(--muted)}
+    .available{background:#e3f6e3}
+    .booked{background:#f8d6d6}
+    .inactive{color:#bbb}
 
     /* Footer */
-    footer{text-align:center;padding:40px 28px;border-top:1px solid #eee;color:var(--muted);font-size:0.9rem;margin-top:40px}
+    footer{text-align:center;padding:40px 28px;border-top:1px solid #e6ddd2;color:var(--muted);font-size:0.9rem;margin-top:40px}
 
     /* Responsive */
     @media(max-width:900px){
-      .about{grid-template-columns:1fr;gap:30px}
+      .about{grid-template-columns:1fr}
       .gallery-grid{grid-template-columns:repeat(2,1fr)}
       .contact-calendar{grid-template-columns:1fr}
     }
@@ -92,7 +112,6 @@
         <a href="#about">About</a>
         <a href="#gallery">Gallery</a>
         <a href="#contact">Contact</a>
-        <a href="#calendar">Availability</a>
       </nav>
     </header>
 
@@ -131,7 +150,6 @@
 
     <!-- CONTACT + CALENDAR -->
     <section class="section contact-calendar" id="contact">
-      <!-- Contact -->
       <div class="contact">
         <h2>Contact & Booking</h2>
         <form onsubmit="sendEmail(event)">
@@ -141,15 +159,14 @@
           <button type="submit">Send Request</button>
         </form>
       </div>
-      <!-- Calendar -->
-      <div class="calendar" id="calendar">
-        <h2>Availability</h2>
-        <div class="calendar-nav">
-          <button id="prevBtn">Prev</button>
-          <div id="monthLabel"></div>
-          <button id="nextBtn">Next</button>
+      <div class="calendar">
+        <h2>Availability Calendar</h2>
+        <div class="calendar-header">
+          <button onclick="prevMonth()">◀</button>
+          <span id="calendar-month"></span>
+          <button onclick="nextMonth()">▶</button>
         </div>
-        <div id="calendarGrid" class="calendar-grid"></div>
+        <div class="calendar-grid" id="calendar"></div>
       </div>
     </section>
 
@@ -160,6 +177,65 @@
   </div>
 
   <script>
+    // Manual booked dates
+    const bookedDates = ["2025-09-20","2025-09-25","2025-10-05"];
+
+    let currentDate = new Date();
+    let minDate = new Date();
+    let maxDate = new Date(minDate.getFullYear(), minDate.getMonth()+3, 1);
+
+    function renderCalendar(){
+      const year = currentDate.getFullYear();
+      const month = currentDate.getMonth();
+      const monthStart = new Date(year,month,1);
+      const monthEnd = new Date(year,month+1,0);
+      const calendar = document.getElementById("calendar");
+      const header = document.getElementById("calendar-month");
+      const dayNames = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+
+      header.textContent = monthStart.toLocaleString('default',{month:'long'})+" "+year;
+      calendar.innerHTML="";
+
+      dayNames.forEach(d=>{
+        const el=document.createElement("div");
+        el.textContent=d;
+        el.className="day-name";
+        calendar.appendChild(el);
+      });
+
+      for(let i=0;i<monthStart.getDay();i++){
+        const el=document.createElement("div");
+        el.className="inactive";
+        calendar.appendChild(el);
+      }
+
+      for(let d=1;d<=monthEnd.getDate();d++){
+        const dateStr = year+"-"+String(month+1).padStart(2,"0")+"-"+String(d).padStart(2,"0");
+        const el=document.createElement("div");
+        el.textContent=d;
+
+        if(bookedDates.includes(dateStr)){
+          el.className="booked";
+        } else {
+          el.className="available";
+        }
+        calendar.appendChild(el);
+      }
+    }
+
+    function prevMonth(){
+      const newDate = new Date(currentDate.getFullYear(), currentDate.getMonth()-1,1);
+      if(newDate<minDate) return;
+      currentDate=newDate; renderCalendar();
+    }
+    function nextMonth(){
+      const newDate = new Date(currentDate.getFullYear(), currentDate.getMonth()+1,1);
+      if(newDate>maxDate) return;
+      currentDate=newDate; renderCalendar();
+    }
+
+    renderCalendar();
+
     function sendEmail(e){
       e.preventDefault();
       var name=document.getElementById('name').value;
@@ -169,71 +245,10 @@
       var body=encodeURIComponent('Name: '+name+'\nEmail: '+email+'\n\n'+msg);
       window.location.href='mailto:info@danggun.com?subject='+subject+'&body='+body;
     }
-
-    // CALENDAR SCRIPT
-    const bookedDates = ["2025-09-20","2025-09-22","2025-09-25"];
-    const calendarGrid = document.getElementById("calendarGrid");
-    const monthLabel = document.getElementById("monthLabel");
-    const prevBtn = document.getElementById("prevBtn");
-    const nextBtn = document.getElementById("nextBtn");
-
-    let today = new Date();
-    let currentYear = today.getFullYear();
-    let currentMonth = today.getMonth();
-    let viewYear = currentYear;
-    let viewMonth = currentMonth;
-
-    function renderCalendar(year, month){
-      calendarGrid.innerHTML = "";
-      const weekdays = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
-      weekdays.forEach(d=>{
-        const cell=document.createElement("div");
-        cell.innerText=d;
-        cell.classList.add("header");
-        calendarGrid.appendChild(cell);
-      });
-
-      const firstDay = new Date(year, month, 1).getDay();
-      const daysInMonth = new Date(year, month+1, 0).getDate();
-      for(let i=0;i<firstDay;i++){
-        const cell=document.createElement("div");
-        cell.classList.add("empty");
-        calendarGrid.appendChild(cell);
-      }
-
-      for(let d=1; d<=daysInMonth; d++){
-        const dateStr = `${year}-${String(month+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
-        const cell=document.createElement("div");
-        cell.innerText=d;
-        if(bookedDates.includes(dateStr)){
-          cell.classList.add("day","booked");
-        } else {
-          cell.classList.add("day","available");
-        }
-        calendarGrid.appendChild(cell);
-      }
-
-      const monthNames=["January","February","March","April","May","June","July","August","September","October","November","December"];
-      monthLabel.innerText = monthNames[month] + " " + year;
-
-      const maxMonth = currentMonth + 3;
-      const maxDate = new Date(currentYear, maxMonth+1, 0);
-      const currentDateView = new Date(year, month, 1);
-
-      prevBtn.disabled = (year===currentYear && month===currentMonth);
-      nextBtn.disabled = currentDateView >= maxDate;
-    }
-
-    prevBtn.addEventListener("click", ()=>{
-      if(viewMonth===0){viewMonth=11;viewYear--;} else {viewMonth--;}
-      renderCalendar(viewYear, viewMonth);
-    });
-    nextBtn.addEventListener("click", ()=>{
-      if(viewMonth===11){viewMonth=0;viewYear++;} else {viewMonth++;}
-      renderCalendar(viewYear, viewMonth);
-    });
-
-    renderCalendar(viewYear, viewMonth);
+  </script>
+</body>
+</html>
+viewMonth);
   </script>
 </body>
 </html>
