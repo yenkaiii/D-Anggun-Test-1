@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>D'Anggun Chalet — Hybrid with WhatsApp Booking</title>
-  <meta name="description" content="Hybrid minimalist website for D'Anggun Chalet with booking calendar and WhatsApp integration." />
+  <title>D'Anggun Chalet — Hybrid with WhatsApp + Call</title>
+  <meta name="description" content="Hybrid minimalist website for D'Anggun Chalet with booking calendar, WhatsApp integration, and call option." />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
     :root{
@@ -157,6 +157,10 @@
           <input type="email" id="email" placeholder="Your Email" required>
           <textarea id="message" rows="5" placeholder="Your message (dates, number of guests...)" required></textarea>
           <button type="submit">Send via WhatsApp</button>
+          <div style="text-align:center;margin:14px 0;color:#999;">or</div>
+          <div style="text-align:center;font-size:0.95rem;color:#666;">
+            Call us at <a href="tel:01901801893" style="color:var(--accent);font-weight:600;">019-01801893</a>
+          </div>
         </form>
       </div>
       <div class="calendar">
@@ -243,7 +247,7 @@
       var email=document.getElementById('email').value;
       var msg=document.getElementById('message').value;
 
-      var phone="60102407608"; // <-- Tukar ke nombor WhatsApp kau
+      var phone="60123456789"; // <-- Tukar ke nombor WhatsApp kau
       var text="Booking request:%0AName: "+name+"%0AEmail: "+email+"%0AMessage: "+msg;
 
       window.open("https://wa.me/"+phone+"?text="+text,"_blank");
