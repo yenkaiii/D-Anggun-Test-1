@@ -115,18 +115,7 @@
 
     <!-- CONTACT + CALENDAR -->
     <section class="section contact-calendar" id="contact">
-      <!-- CALENDAR LEFT -->
-      <div class="calendar">
-        <h2>Availability Calendar</h2>
-        <div class="calendar-header">
-          <button onclick="prevMonth()">◀</button>
-          <span id="calendar-month"></span>
-          <button onclick="nextMonth()">▶</button>
-        </div>
-        <div class="calendar-grid" id="calendar"></div>
-      </div>
-
-      <!-- CONTACT RIGHT -->
+      <!-- CONTACT LEFT -->
       <div class="contact">
         <h2>Contact & Booking</h2>
         <form onsubmit="sendWhatsApp(event)">
@@ -139,6 +128,17 @@
             Call us at <a href="tel:01901801893" style="color:var(--accent);font-weight:600;">019-01801893</a>
           </div>
         </form>
+      </div>
+
+      <!-- CALENDAR RIGHT -->
+      <div class="calendar">
+        <h2>Availability Calendar</h2>
+        <div class="calendar-header">
+          <button onclick="prevMonth()">◀</button>
+          <span id="calendar-month"></span>
+          <button onclick="nextMonth()">▶</button>
+        </div>
+        <div class="calendar-grid" id="calendar"></div>
       </div>
     </section>
 
@@ -185,20 +185,11 @@
     }
 
     function prevMonth(){
-      if(displayMonth.getMonth() === current.getMonth() &&
-         displayMonth.getFullYear() === current.getFullYear()){
-        return;
-      }
       displayMonth.setMonth(displayMonth.getMonth()-1);
       renderCalendar();
     }
 
     function nextMonth(){
-      let maxMonth = new Date(current.getFullYear(), current.getMonth()+2, 1);
-      if(displayMonth.getMonth() === maxMonth.getMonth() &&
-         displayMonth.getFullYear() === maxMonth.getFullYear()){
-        return;
-      }
       displayMonth.setMonth(displayMonth.getMonth()+1);
       renderCalendar();
     }
