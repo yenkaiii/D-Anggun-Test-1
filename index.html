@@ -59,7 +59,7 @@
     .gallery-grid img:hover{transform:scale(1.03)}
 
     /* Contact + Calendar */
-    .contact-calendar{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+    .contact-calendar{display:grid;grid-template-columns:1fr 1fr;gap:40px; margin-bottom:60px;}
     .contact, .calendar{
       background:#fff;
       border:1px solid #e6ddd2;
@@ -148,7 +148,7 @@
       </div>
     </section>
 
-    <!-- CALENDAR + CONTACT -->
+    <!-- CONTACT + CALENDAR -->
     <section class="section contact-calendar" id="contact">
       <div class="calendar">
         <h2>Availability Calendar</h2>
@@ -229,13 +229,13 @@
 
     function prevMonth(){
       const newDate = new Date(currentDate.getFullYear(), currentDate.getMonth()-1,1);
-      if(newDate<minDate) return;
-      currentDate=newDate; renderCalendar();
+      if(newDate < minDate) return;
+      currentDate = newDate; renderCalendar();
     }
     function nextMonth(){
       const newDate = new Date(currentDate.getFullYear(), currentDate.getMonth()+1,1);
-      if(newDate>maxDate) return;
-      currentDate=newDate; renderCalendar();
+      if(newDate > maxDate) return;
+      currentDate = newDate; renderCalendar();
     }
 
     renderCalendar();
