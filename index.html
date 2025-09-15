@@ -59,7 +59,12 @@
     .gallery-grid img:hover{transform:scale(1.03)}
 
     /* Contact + Calendar */
-    .contact-calendar{display:grid;grid-template-columns:1fr 1fr;gap:40px; margin-bottom:60px;}
+    .contact-calendar{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:40px;
+      margin-bottom:30px; /* spacing bawah inject */
+    }
     .contact, .calendar{
       background:#fff;
       border:1px solid #e6ddd2;
@@ -185,7 +190,7 @@
     const bookedDates = ["2025-09-20","2025-09-25","2025-10-05"];
 
     let currentDate = new Date();
-    let minDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+    let minDate = new Date();
     let maxDate = new Date(minDate.getFullYear(), minDate.getMonth()+3, 1);
 
     function renderCalendar(){
@@ -229,13 +234,13 @@
 
     function prevMonth(){
       const newDate = new Date(currentDate.getFullYear(), currentDate.getMonth()-1,1);
-      if(newDate < minDate) return;
-      currentDate = newDate; renderCalendar();
+      if(newDate < new Date(minDate.getFullYear(), minDate.getMonth(), 1)) return;
+      currentDate=newDate; renderCalendar();
     }
     function nextMonth(){
       const newDate = new Date(currentDate.getFullYear(), currentDate.getMonth()+1,1);
       if(newDate > maxDate) return;
-      currentDate = newDate; renderCalendar();
+      currentDate=newDate; renderCalendar();
     }
 
     renderCalendar();
