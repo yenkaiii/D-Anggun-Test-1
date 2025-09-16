@@ -193,9 +193,11 @@
     // Manual booked dates
     const bookedDates = ["2025-09-20","2025-09-25","2025-10-05"];
 
-    let currentDate = new Date();
-    let minDate = new Date();
-    let maxDate = new Date(minDate.getFullYear(), minDate.getMonth()+3, 1);
+    // <<< FIXED: initialize minDate/maxDate as first-day-of-month so prev/next month comparisons work correctly >>>
+    const today = new Date();
+    const minDate = new Date(today.getFullYear(), today.getMonth(), 1);      // first day of current month
+    const maxDate = new Date(today.getFullYear(), today.getMonth() + 3, 1);  // first day of month +3 (inclusive)
+    let currentDate = new Date(minDate);
 
     function renderCalendar(){
       const year = currentDate.getFullYear();
@@ -238,12 +240,12 @@
 
     function prevMonth(){
       const newDate = new Date(currentDate.getFullYear(), currentDate.getMonth()-1,1);
-      if(newDate<minDate) return;
+      if(newDate < minDate) return;
       currentDate=newDate; renderCalendar();
     }
     function nextMonth(){
       const newDate = new Date(currentDate.getFullYear(), currentDate.getMonth()+1,1);
-      if(newDate>maxDate) return;
+      if(newDate > maxDate) return;
       currentDate=newDate; renderCalendar();
     }
 
